@@ -21,10 +21,7 @@
         <nuxt-link :to="{ name: 'datas-id', params: { id: list } }">
           <v-hover v-slot:default="{ hover }">
             <v-card flat tile class="d-flex" :elevation="hover ? 12 : 2">
-              <v-img
-                :src="list.artworkUrl100"
-                aspect-ratio="1"
-              >
+              <v-img :src="list.artworkUrl100" aspect-ratio="1">
                 <p>{{ list.trackName }}</p>
               </v-img>
             </v-card>
@@ -47,15 +44,10 @@ export default {
   methods: {
     set () {
       axios
-        .get(
-          'https://itunes.apple.com/search?term=$' + this.textsearch + '&limit=30'
-        )
+        .get('https://itunes.apple.com/search?term=$' + this.textsearch + '&limit=30')
         .then((resp) => {
           this.Datalist = resp.data.results
           this.$emit('Datalist', Object(resp.data.results))
-        })
-        .catch((err) => {
-          console.error(err)
         })
     }
   }
